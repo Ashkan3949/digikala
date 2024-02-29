@@ -7,6 +7,12 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">درباره ما</a></li>
+
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">خارح شدن</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">وارد شدن</a></li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">فروشگاه</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -14,6 +20,7 @@
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="#!">محصولات پر بازدید</a></li>
                         <li><a class="dropdown-item" href="#!">محصولات جدید</a></li>
+
                     </ul>
                 </li>
             </ul>
