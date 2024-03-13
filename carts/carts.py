@@ -7,3 +7,15 @@ class Carts:
             carts=self.session['session_key']={}
 
         self.carts = carts
+
+    def add(self, product):
+        product_id  = str(product.id)
+
+        if product_id in self.carts:
+            pass
+
+        else:
+            self.carts[product_id] = {'price':str(product.price)}
+
+
+        self.session.modified = True

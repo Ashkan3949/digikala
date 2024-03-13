@@ -18,15 +18,37 @@
               {% else %}
               <p class='card-text'>💰قیمت: {{ product.price | intcomma }}</p>
                 {% endif %}
+                <br><br>
+                <button class='btn btn-secondary' type='button' value='{{ product.id }}' id='add-carts' >اضافه کردن به سبد خرید</button>
 
-                <a href ="{% url 'home' %}">بازشگت به صفحه اصلی</a>
+                <a href ="{% url 'home' %}" class='btn btn-secondary'>بازشگت به صفحه اصلی</a>
             </div>
           </div>
         </div>
       </div>
     </div>
 <br><br><br>
-    
 
+<script>
+$(document).on('click', '#add-carts', function(e){
+  e.preventDefault();
+  $.ajax({
+    type: 'POST'
+    url: '{% url 'carts_add' %}',
+    data:{
+      product_id: $('#add-carts').val(),
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      action: 'post'
+    },
 
+    success: function(json){
+      console.log(json)
+    },
+
+    error: function(xhr, errmsg, err){
+      
+    }
+  })
+})
+</script>
 {% endblock %}
