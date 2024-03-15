@@ -42,7 +42,8 @@ $(document).on('click', '#add-carts', function(e){
     },
 
     success: function(json){
-      console.log(json)
+      //console.log(json)
+      document.getElementById('rts_quantity').textContent = json.qty
     },
 
     error: function(xhr, errmsg, err){
